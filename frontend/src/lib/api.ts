@@ -1,6 +1,6 @@
 import type { ApiEnvelope, Todo } from '../types'
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:8000/api/v1'
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? '/api/v1'
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
