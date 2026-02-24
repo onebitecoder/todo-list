@@ -30,10 +30,11 @@ def create_app(*, init_default_db: bool = True) -> FastAPI:
     settings = get_settings()
     app = FastAPI(title="Todo List API", version="0.1.0", lifespan=_build_lifespan(init_default_db))
 
+    origins = settings.cors_origins_list or ["*"]
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=settings.cors_origins_list or ["*"],
-        allow_credentials=True,
+        allow_origins=origins,
+        allow_credentials=origins != ["*"],
         allow_methods=["*"],
         allow_headers=["*"],
     )
